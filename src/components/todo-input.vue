@@ -39,5 +39,6 @@ export default {
     display: flex
     justify-content: start
     input
-        width: 100%
+      margin: 10px
+      width: 100%
 </style>

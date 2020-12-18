@@ -2,18 +2,21 @@
   <div class="cards">
     <div class="card" v-for="(item, id) in items" :key="id">
       <div class="card__left">
-        <input type="checkbox" :checked="item.check"  />
+        <input type="checkbox" :checked="item.check" />
       </div>
       <div class="card__center">
         <p>{{ item.time }}</p>
-        <textarea :value="item.content"></textarea>
+        <p v-if="checkModify">{{ item.content }}</p>
+        <textarea :value="item.content" v-show="!checkModify"></textarea>
       </div>
       <div class="card__right">
         <div>
-          <button> <p>t</p></button>
+          <button @click="changeModify">
+            <p>{{ btnModify }}</p>
+          </button>
         </div>
         <div>
-          <button @click="removeItem += item"> <p>X</p></button>
+          <button @click="removeItem += item"><p>X</p></button>
         </div>
       </div>
     </div>
@@ -24,6 +27,8 @@
 export default {
   data() {
     return {
+      checkModify: true,
+      btnModify: "M",
     };
   },
   computed: {
@@ -31,10 +36,23 @@ export default {
       return this.$store.state.todos;
     },
     removeItem: {
-        set(id) {
-            this.$store.commit('deleteCard', id)
-        }
-    }
+      set(id) {
+        this.$store.commit("deleteCard", id);
+      },
+    },
+  },
+  methods: {
+    changeModify() {
+      this.checkModify = !this.checkModify;
+      if (this.btnModify == 'M')
+      this.btnModify = "V"
+      else
+      {
+          this.checkModify = !this.checkModify
+          this.btnModify = "M"
+      }
+
+    },
   },
 };
 </script>
@@ -48,7 +66,7 @@ export default {
         margin: 20px 10px
         &__left
             input
-                margin: 10px 
+                margin: 10px
         &__center
             display: flex
             flex-direction: column
@@ -73,5 +91,4 @@ export default {
                         padding: 0px
                         margin: 0px
                         width: 100%
-
 </style>
