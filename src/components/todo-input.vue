@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text">
+        <input type="text" >
     </div>
 </template>
 
@@ -10,6 +10,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass" scope>
 
 </style>

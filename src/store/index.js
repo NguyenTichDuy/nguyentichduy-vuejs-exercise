@@ -21,8 +21,9 @@ export default createStore({
           default: true
         }
 
-      }
-    ]
+      },
+    ],
+
   },
   mutations: {},
   actions: {},
