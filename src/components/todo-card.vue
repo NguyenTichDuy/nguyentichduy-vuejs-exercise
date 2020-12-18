@@ -48,7 +48,7 @@ export default {
         margin: 20px 10px
         &__left
             input
-                margin-top: 10px
+                margin: 10px 
         &__center
             display: flex
             flex-direction: column
@@ -57,11 +57,14 @@ export default {
             width: 90%
             margin-left: 5px
             textarea
+                margin: 20px 0px
                 border: none
+                font-family: "Roboto", sans-serif
         &__right
             display: flex
             flex-direction: row
             div
+                margin-top: 10px
                 button
                     margin: 0px
                     padding: 0px
