@@ -2,7 +2,7 @@
   <div class="cards">
     <div class="card" v-for="item in items" :key="item">
       <div class="card__left">
-        <input type="checkbox" :checked="item.check" />
+        <input type="checkbox" :checked="item.check" @click="item.check = !item.check"/>
       </div>
       <div class="card__center">
         <p>{{ item.time }}</p>

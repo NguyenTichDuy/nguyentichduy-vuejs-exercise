@@ -1,8 +1,8 @@
 <template>
   <div class="cards">
-    <div class="card" v-for="item in items" :key="item">
+    <div class="card" v-for="(item, id) in items" :key="id">
       <div class="card__left">
-        <input type="checkbox" :checked="item.check" />
+        <input type="checkbox" :checked="item.check"  />
       </div>
       <div class="card__center">
         <p>{{ item.time }}</p>
@@ -10,10 +10,10 @@
       </div>
       <div class="card__right">
         <div>
-          <button> <p>X</p></button>
+          <button> <p>t</p></button>
         </div>
         <div>
-          <button> <p>X</p></button>
+          <button @click="removeItem += item"> <p>X</p></button>
         </div>
       </div>
     </div>
@@ -23,12 +23,18 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+    };
   },
   computed: {
     items() {
       return this.$store.state.todos;
     },
+    removeItem: {
+        set(id) {
+            this.$store.commit('deleteCard', id)
+        }
+    }
   },
 };
 </script>
@@ -56,12 +62,13 @@ export default {
             display: flex
             flex-direction: row
             div
-                padding: 10px
-                display: flex
-                
                 button
-                    justify-content: center
+                    margin: 0px
+                    padding: 0px
+                    width: 100%
                     p
-                        padding: 5px
+                        padding: 0px
+                        margin: 0px
                         width: 100%
+
 </style>

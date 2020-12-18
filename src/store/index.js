@@ -9,7 +9,6 @@ export default createStore({
         check: true
       },
     ],
-
   },
   mutations: {
     addNewCard(state, load) {
@@ -22,6 +21,9 @@ export default createStore({
         content,
         check,
       })
+    },
+    deleteCard(state, id) {
+      state.todos.splice(id,1)
     }
   },
   getters: {
