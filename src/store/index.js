@@ -1,14 +1,8 @@
 import { createStore } from "vuex";
-
+import axios from 'axios'
 export default createStore({
   state: {
-    todos: [
-      {
-        time: "20/10/2000",
-        content: "hhiiih",
-        check: true
-      },
-    ],
+    test: []
   },
   mutations: {
     addNewCard(state, load) {
@@ -16,26 +10,35 @@ export default createStore({
       let content = load.value
       let check = load.check
       console.log(load);
-      state.todos.push({
+      state.test.push({
         time,
         content,
         check,
       })
     },
     deleteCard(state, id) {
-      state.todos.splice(id,1)
+      state.test.splice(id,1)
+    },
+    loadData(state, load) {
+      state.test = load.data
     }
   },
   getters: {
     loadUncomplete: state => {
-      return state.todos.filter(todo => !todo.check)
+      return state.test.filter(todo => !todo.check)
     },
     loadComplete: state => {
-      return state.todos.filter(todo => todo.check)
-    }
+      return state.test.filter(todo => todo.check)
+    },
+    
   },
   actions: {
-    
+    async LoadData({ commit }) {
+      await axios.get('https://5fdc598b48321c0017011956.mockapi.io/todos')
+                      .then(function (res) {
+                        commit('loadData', res);
+                      })
+    }
   },
   modules: {}
 });

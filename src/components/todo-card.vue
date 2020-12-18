@@ -5,7 +5,7 @@
         <input type="checkbox" :checked="item.check" />
       </div>
       <div class="card__center">
-        <p>{{ item.time }}</p>
+        <p>{{ new Date(item.date).toISOString() }}</p>
         <p v-if="checkModify">{{ item.content }}</p>
         <textarea :value="item.content" v-show="!checkModify"></textarea>
       </div>
@@ -33,7 +33,8 @@ export default {
   },
   computed: {
     items() {
-      return this.$store.state.todos;
+      if (this.$store.state.test.length == 0) this.$store.dispatch("LoadData");
+      return this.$store.state.test;
     },
     removeItem: {
       set(id) {
@@ -44,14 +45,11 @@ export default {
   methods: {
     changeModify() {
       this.checkModify = !this.checkModify;
-      if (this.btnModify == 'M')
-      this.btnModify = "V"
-      else
-      {
-          this.checkModify = !this.checkModify
-          this.btnModify = "M"
+      if (this.btnModify == "M") this.btnModify = "V";
+      else {
+        this.checkModify = !this.checkModify;
+        this.btnModify = "M";
       }
-
     },
   },
 };

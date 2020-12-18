@@ -1,19 +1,22 @@
 <template>
   <div class="cards">
-    <div class="card" v-for="item in items" :key="item">
+    <div class="card" v-for="(item, id) in items" :key="id">
       <div class="card__left">
-        <input type="checkbox" :checked="item.check" @click="item.check = !item.check"/>
+        <input type="checkbox" :checked="item.check" />
       </div>
       <div class="card__center">
-        <p>{{ item.time }}</p>
-        <textarea :value="item.content"></textarea>
+        <p>{{ new Date(item.date).toISOString() }}</p>
+        <p v-if="checkModify">{{ item.content }}</p>
+        <textarea :value="item.content" v-show="!checkModify"></textarea>
       </div>
       <div class="card__right">
         <div>
-          <button> <p>X</p></button>
+          <button @click="changeModify">
+            <p>{{ btnModify }}</p>
+          </button>
         </div>
         <div>
-          <button> <p>X</p></button>
+          <button @click="removeItem += item"><p>X</p></button>
         </div>
       </div>
     </div>
@@ -22,10 +25,27 @@
 
 <script>
 export default {
-    computed: {
-        items() {
-            return this.$store.getters.loadUncomplete
-        }
-    }
-}
+  data() {
+    return {
+      checkModify: true,
+      btnModify: "M",
+    };
+  },
+  computed: {
+    items() {
+      console.log("hihihi");
+      return this.$store.getters.loadUncomplete;
+    },
+  },
+    methods: {
+    changeModify() {
+      this.checkModify = !this.checkModify;
+      if (this.btnModify == "M") this.btnModify = "V";
+      else {
+        this.checkModify = !this.checkModify;
+        this.btnModify = "M";
+      }
+    },
+  },
+};
 </script>

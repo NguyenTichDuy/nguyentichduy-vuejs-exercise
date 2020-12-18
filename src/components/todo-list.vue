@@ -5,8 +5,9 @@
       <a href="" @click.prevent="name = 'uncomplete'"><li>Uncompleted</li></a>
       <a href="" @click.prevent="name = 'complete'"><li>Completed</li></a>
     </ul>
-    <component :is="currentComponent">
-    </component>
+    <keep-alive>
+      <component :is="currentComponent"> </component>
+    </keep-alive>
   </div>
 </template>
 <script>
@@ -17,18 +18,18 @@ export default {
   components: {
     mcard,
     uncomplete,
-    complete
+    complete,
   },
   data() {
     return {
-      name: 'mcard'
-    }
+      name: "mcard",
+    };
   },
   computed: {
     currentComponent() {
-      return this.name
-    }
-  }
+      return this.name;
+    },
+  },
 };
 </script>
 <style scoped>
