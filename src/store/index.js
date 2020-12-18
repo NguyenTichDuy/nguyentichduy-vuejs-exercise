@@ -4,28 +4,36 @@ export default createStore({
   state: {
     todos: [
       {
-        id: {
-          type: Number,
-          default: 1
-        },
-        time: {
-          type: String,
-          default: "2020-5-20"
-        },
-        content: {
-          type: String,
-          default: "this is a content"
-        },
-        check: {
-          type: Boolean,
-          default: true
-        }
-
+        time: "20/10/2000",
+        content: "hhiiih",
+        check: true
       },
     ],
 
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    addNewCard(state, load) {
+      let time = load.today
+      let content = load.value
+      let check = load.check
+      console.log(load);
+      state.todos.push({
+        time,
+        content,
+        check,
+      })
+    }
+  },
+  getters: {
+    loadUncomplete: state => {
+      return state.todos.filter(todo => !todo.check)
+    },
+    loadComplete: state => {
+      return state.todos.filter(todo => todo.check)
+    }
+  },
+  actions: {
+
+  },
   modules: {}
 });

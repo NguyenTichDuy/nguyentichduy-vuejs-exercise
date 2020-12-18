@@ -2,18 +2,15 @@
   <div class="to-do">
     <minput></minput>
     <mlist></mlist>
-    <mcard></mcard>
   </div>
 </template>
 
 <script>
 import minput from "../components/todo-input";
-import mcard from "../components/todo-card";
-import mlist from '../components/list'
+import mlist from '../components/todo-list'
 export default {
   components: {
     minput,
-    mcard,
     mlist
   },
 };

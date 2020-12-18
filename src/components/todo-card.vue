@@ -1,16 +1,20 @@
 <template>
   <div class="cards">
-    <div class="card" v-for="item in items" :key="item.id">
+    <div class="card" v-for="item in items" :key="item">
       <div class="card__left">
-        <input type="checkbox" />
+        <input type="checkbox" :checked="item.check" />
       </div>
       <div class="card__center">
-        <p>{{ item.time.default }}</p>
-        <p>{{ item.content.default }}</p>
+        <p>{{ item.time }}</p>
+        <textarea :value="item.content"></textarea>
       </div>
       <div class="card__right">
-        <button>modified</button>
-        <button>X</button>
+        <div>
+          <button> <p>X</p></button>
+        </div>
+        <div>
+          <button> <p>X</p></button>
+        </div>
       </div>
     </div>
   </div>
@@ -29,13 +33,15 @@ export default {
 };
 </script>
 
-<style lang="sass" scope>
+<style lang="sass">
 .cards
+    margin: 10px 5px
     .card
+        background-color: #fff
         display: flex
         margin: 20px 10px
         &__left
-            input 
+            input
                 margin-top: 10px
         &__center
             display: flex
@@ -44,7 +50,18 @@ export default {
             text-align: left
             width: 90%
             margin-left: 5px
+            textarea
+                border: none
         &__right
             display: flex
             flex-direction: row
+            div
+                padding: 10px
+                display: flex
+                
+                button
+                    justify-content: center
+                    p
+                        padding: 5px
+                        width: 100%
 </style>
